@@ -5,21 +5,14 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "Home",
-    component: Home,
+    component: Home
   },
-  {
-    path: "/jobs/:id",
-    name: "Job",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "job" */ "../views/Job.vue"),
-  },
+  { path: "/:pathMatch(.*)*", redirect: { name: "Home" } }
 ];
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes,
+  routes
 });
 
 export default router;
