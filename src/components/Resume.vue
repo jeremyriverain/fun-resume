@@ -1,7 +1,11 @@
 <template>
   <article class="media">
     <figure class="media-left">
-      <img src="@/assets/my_picture.jpg" width="200" style="height:auto" />
+      <img
+        v-lazy="require('@/assets/my_picture.jpg')"
+        width="200"
+        style="height:auto"
+      />
     </figure>
     <div class="media-content">
       <div class="content">
@@ -45,8 +49,7 @@
 
         <p class="mt-3">
           <strong
-            >Saurez-vous les deviner au travers de ce mini-jeu de pendu
-            ?</strong
+            >Sauras-tu les deviner au travers de ce mini-jeu de pendu ?</strong
           >
           😉
         </p>

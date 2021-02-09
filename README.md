@@ -1,6 +1,6 @@
-# fun-resume
+# Fun resume
 
-A demo is available [https://fun-resume.surge.sh](https://fun-resume.surge.sh).
+A demo is available on [https://fun-resume.surge.sh](https://fun-resume.surge.sh).
 
 ## Project setup
 ```

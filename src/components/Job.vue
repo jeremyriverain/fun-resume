@@ -1,19 +1,18 @@
 <template>
-  <span class="ml-1" v-if="showDescription" v-html="label" />
-  <span class="ml-1" v-else>...</span>
+  <span v-if="!isGuessed">❓</span>
+  <span v-else>✔️</span>
+  <span class="ml-3" v-if="prefix.length > 0">{{ prefix }}</span>
+  <span class="word px-3 is-size-4">{{ word }}</span>
+  <span class="ml-1" v-if="suffix.length > 0">{{ suffix }}</span>
 </template>
 
 <script lang="ts">
+import useKeyboard from "@/use/useKeyboard";
 import { JobInterface } from "@/interfaces/jobs.interface";
-import { defineComponent, computed } from "vue";
-import Word from "@/components/Word.vue";
+import { computed, defineComponent } from "vue";
 
 export default defineComponent({
   name: "Job",
-  components: {
-    // eslint-disable-next-line
-    Word
-  },
   props: {
     job: {
       type: Object as () => JobInterface,
@@ -25,18 +24,45 @@ export default defineComponent({
     }
   },
   setup(props) {
-    const label = computed(() => {
-      return props.job.description.replace("%%", '<word word="test"></word>');
+    const boundaryIndex = props.job.description
+      .split("")
+      .findIndex(e => e === "%");
+
+    const prefix =
+      boundaryIndex === 0 ? "" : props.job.description.slice(0, boundaryIndex);
+
+    const suffix = props.job.description.slice(boundaryIndex + 2);
+
+    const { keysPressed } = useKeyboard();
+
+    const word = computed(() => {
+      const result = props.job.word
+        .split("")
+        .map(char => {
+          if ([`'`, " "].includes(char) || keysPressed.value[char] === true) {
+            return char;
+          }
+          return "_";
+        })
+        .join("");
+      return result;
+    });
+
+    const isGuessed = computed(() => {
+      return word.value.split("").findIndex(v => v === "_") === -1;
     });
 
     return {
-      label
+      prefix,
+      suffix,
+      word,
+      isGuessed
     };
   }
 });
 </script>
 
 <style lang="sass" scoped>
->>> .word
-  letter-spacing: 1rem!important
+.word
+  letter-spacing: 0.2rem
 </style>

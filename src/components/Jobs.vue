@@ -1,9 +1,6 @@
 <template>
   <ul>
     <li class="py-1" v-for="(job, i) in jobs" :key="job.word">
-      <span v-if="i === currentIndex">👉</span>
-      <span v-else>❓</span>
-
       <job :show-description="currentIndex >= i" :job="job" />
     </li>
   </ul>

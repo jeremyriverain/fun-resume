@@ -33,14 +33,14 @@ const jobs: Ref<JobInterface[]> = ref([
     valid: false
   },
   {
-    word: "MAISON D ARRET",
+    word: "MAISON D'ARRET",
     description: "Éducateur sportif en %%",
     dirty: false,
     valid: false
   },
   {
     word: "PREPARATEUR PHYSIQUE",
-    description: "%% au pôle France course au large",
+    description: "%% au pôle Finistère course au large",
     dirty: false,
     valid: false
   },
@@ -60,8 +60,17 @@ export default function() {
     return firstDirty === -1 ? null : firstDirty;
   });
 
+  const words = jobs.value.map(job => job.word);
+
+  const listLetters = new Set();
+
+  words.forEach(word => {
+    word.split("").forEach(c => listLetters.add(c));
+  });
+
   return {
     jobs: computed(() => jobs),
-    currentIndex
+    currentIndex,
+    listLetters
   };
 }

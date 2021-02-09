@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, onMounted } from "vue";
 import useKeyboard from "@/use/useKeyboard";
 import KeyboardRow from "@/components/KeyboardRow.vue";
 
@@ -13,8 +13,13 @@ export default defineComponent({
     KeyboardRow
   },
   setup() {
-    const { keyboardRef: keyboard } = useKeyboard();
-    console.log(keyboard.value);
+    const { keyboardRef: keyboard, pressKey } = useKeyboard();
+
+    onMounted(() => {
+      window.addEventListener("keypress", e => {
+        pressKey(e.key.toUpperCase());
+      });
+    });
 
     return {
       keyboard

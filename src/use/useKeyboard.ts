@@ -1,6 +1,6 @@
 import { ref } from "vue";
 
-const keyboard = {
+const keyboard = ref({
   1: {
     a: {},
     z: {},
@@ -26,11 +26,22 @@ const keyboard = {
     m: {}
   },
   3: { w: {}, x: {}, c: {}, v: {}, b: {}, n: {} }
-};
+});
+
+const keysPressed = ref<{ [x: string]: boolean }>({});
 
 export default function() {
-  const keyboardRef = ref(keyboard);
+  const pressKey = (key: string) => {
+    keysPressed.value[key] = true;
+
+    keysPressed.value = {
+      ...keysPressed.value
+    };
+  };
+
   return {
-    keyboardRef
+    keyboardRef: keyboard,
+    keysPressed,
+    pressKey
   };
 }
