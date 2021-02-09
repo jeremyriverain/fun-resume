@@ -4,9 +4,9 @@
       <resume>
         <jobs class="my-5" :jobs="jobs" :currentIndex="currentIndex" />
         <keyboard />
+        <progress-bar class="mt-5" />
       </resume>
     </section>
-    <section class="section"></section>
   </div>
 </template>
 
@@ -16,13 +16,15 @@ import useJobs from "@/use/useJobs";
 import Keyboard from "@/components/Keyboard.vue";
 import Jobs from "@/components/Jobs.vue";
 import Resume from "@/components/Resume.vue";
+import ProgressBar from "@/components/ProgressBar.vue";
 
 export default defineComponent({
-  name: "Home",
+  name: "PageHome",
   components: {
     Jobs,
     Keyboard,
-    Resume
+    Resume,
+    ProgressBar
   },
   setup() {
     const { jobs: jobsRef, currentIndex: currentIndexRef } = useJobs();

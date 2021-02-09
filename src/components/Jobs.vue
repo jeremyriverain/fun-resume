@@ -4,7 +4,7 @@
       <span v-if="i === currentIndex">👉</span>
       <span v-else>❓</span>
 
-      <job-description :show-description="currentIndex >= i" :job="job" />
+      <job :show-description="currentIndex >= i" :job="job" />
     </li>
   </ul>
 </template>
@@ -12,11 +12,12 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { JobInterface } from "@/interfaces/jobs.interface";
-import JobDescription from "@/components/JobDescription.vue";
+import Job from "@/components/Job.vue";
 
 export default defineComponent({
+  name: "Jobs",
   components: {
-    JobDescription
+    Job
   },
   props: {
     jobs: {

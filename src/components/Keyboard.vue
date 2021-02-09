@@ -1,5 +1,5 @@
 <template>
-  <keyboard-row v-for="row in keyboard" :key="row" :row="row" class="mb-1" />
+  <keyboard-row v-for="row in keyboard" :key="row" :row="row" />
 </template>
 
 <script lang="ts">
@@ -8,6 +8,7 @@ import useKeyboard from "@/use/useKeyboard";
 import KeyboardRow from "@/components/KeyboardRow.vue";
 
 export default defineComponent({
+  name: "Keyboard",
   components: {
     KeyboardRow
   },

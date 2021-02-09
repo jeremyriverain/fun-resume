@@ -1,11 +1,6 @@
 <template>
   <div class="row">
-    <keyboard-key
-      v-for="(val, key) in row"
-      :key="key"
-      :pkey="key"
-      class="ml-1"
-    />
+    <keyboard-key v-for="(val, key) in row" :key="key" :pkey="key" />
   </div>
 </template>
 
@@ -14,6 +9,7 @@ import { defineComponent } from "vue";
 import { KeyboardRowInterface } from "@/interfaces/keyboard.interface";
 import KeyboardKey from "@/components/KeyboardKey.vue";
 export default defineComponent({
+  name: "KeyboardRow",
   props: {
     row: {
       type: Object as () => KeyboardRowInterface,
@@ -30,4 +26,5 @@ export default defineComponent({
 .row
     display: flex
     flex-wrap: wrap
+    justify-content: center
 </style>

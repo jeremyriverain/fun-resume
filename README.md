@@ -1,5 +1,7 @@
 # fun-resume
 
+A demo is available [https://fun-resume.surge.sh](https://fun-resume.surge.sh).
+
 ## Project setup
 ```
 npm install
@@ -20,5 +22,7 @@ npm run build
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Deploy
+```
+npm run deploy
+```

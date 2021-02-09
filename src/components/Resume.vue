@@ -43,7 +43,13 @@
           lesquels ceux que je vais lister ci-après.
         </p>
 
-        <p class="mt-3"><strong>Saurez-vous les deviner ?</strong> 😉</p>
+        <p class="mt-3">
+          <strong
+            >Saurez-vous les deviner au travers de ce mini-jeu de pendu
+            ?</strong
+          >
+          😉
+        </p>
       </div>
       <slot />
     </div>
@@ -53,6 +59,7 @@
 <script lang="ts">
 import { defineComponent, computed } from "vue";
 export default defineComponent({
+  name: "Resume",
   setup() {
     const calculateAge = (birthday: Date) => {
       // birthday is a date
